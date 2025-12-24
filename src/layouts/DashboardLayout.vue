@@ -51,16 +51,54 @@
       <nav class="sidebar-nav">
         <div class="nav-section">
           <p class="nav-section-title">Main Menu</p>
+
+          <!-- Dashboard Link -->
           <router-link
-            v-for="item in menuItems"
-            :key="item.path"
-            :to="item.path"
+            to="/"
             class="nav-item"
-            :class="{ active: $route.path === item.path }"
+            :class="{ active: $route.path === '/' }"
           >
-            <component :is="item.icon" class="nav-icon" />
-            <span>{{ item.name }}</span>
+            <component :is="HomeIcon" class="nav-icon" />
+            <span>Dashboard</span>
           </router-link>
+
+          <!-- Stalker Dropdown -->
+          <div class="nav-dropdown">
+            <button
+              class="nav-item nav-dropdown-toggle"
+              :class="{ active: isStalkerActive, open: stalkerOpen }"
+              @click="stalkerOpen = !stalkerOpen"
+            >
+              <component :is="StalkerIcon" class="nav-icon" />
+              <span>Stalker</span>
+              <svg
+                class="dropdown-arrow"
+                :class="{ rotated: stalkerOpen }"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M19 9L12 16L5 9"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <transition name="dropdown">
+              <div v-if="stalkerOpen" class="nav-dropdown-menu">
+                <router-link
+                  to="/instagram-stalker"
+                  class="nav-item nav-subitem"
+                  :class="{ active: $route.path === '/instagram-stalker' }"
+                >
+                  <component :is="InstagramIcon" class="nav-icon" />
+                  <span>Instagram</span>
+                </router-link>
+              </div>
+            </transition>
+          </div>
         </div>
       </nav>
 

@@ -15,10 +15,8 @@ const api = axios.create({
 // Instagram Stalker API
 export const instagramStalker = async (username) => {
   try {
-    const response = await api.request({
-      method: "GET",
-      url: "/instagram-stalker-updated",
-      data: {
+    const response = await api.get("/instagram-stalker-updated", {
+      params: {
         username: username,
       },
     });

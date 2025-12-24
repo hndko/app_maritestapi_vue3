@@ -58,7 +58,7 @@
             class="nav-item"
             :class="{ active: $route.path === '/' }"
           >
-            <component :is="HomeIcon" class="nav-icon" />
+            <i class="fas fa-home nav-icon"></i>
             <span>Dashboard</span>
           </router-link>
 
@@ -69,22 +69,12 @@
               :class="{ active: isStalkerActive, open: stalkerOpen }"
               @click="stalkerOpen = !stalkerOpen"
             >
-              <component :is="StalkerIcon" class="nav-icon" />
+              <i class="fas fa-eye nav-icon"></i>
               <span>Stalker</span>
-              <svg
-                class="dropdown-arrow"
+              <i
+                class="fas fa-chevron-down dropdown-arrow"
                 :class="{ rotated: stalkerOpen }"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  d="M19 9L12 16L5 9"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+              ></i>
             </button>
             <transition name="dropdown">
               <div v-if="stalkerOpen" class="nav-dropdown-menu">
@@ -93,7 +83,7 @@
                   class="nav-item nav-subitem"
                   :class="{ active: $route.path === '/instagram-stalker' }"
                 >
-                  <component :is="InstagramIcon" class="nav-icon" />
+                  <i class="fab fa-instagram nav-icon"></i>
                   <span>Instagram</span>
                 </router-link>
               </div>
@@ -106,7 +96,7 @@
       <div class="sidebar-footer">
         <div class="footer-info">
           <p class="footer-version">v1.0.0</p>
-          <p class="footer-copyright">© 2024 Pitucode</p>
+          <p class="footer-copyright">© 2025 Mari Partner</p>
         </div>
       </div>
     </aside>
@@ -162,25 +152,19 @@
 </template>
 
 <script setup>
-import { ref, shallowRef, markRaw } from "vue";
+import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
 
-// Icons as components
-const HomeIcon = {
-  template: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20.5523 5.44772 21 6 21H9M19 10L21 12M19 10V20C19 20.5523 18.5523 21 18 21H15M9 21C9.55228 21 10 20.5523 10 20V16C10 15.4477 10.4477 15 11 15H13C13.5523 15 14 15.4477 14 16V20C14 20.5523 14.4477 21 15 21M9 21H15" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-};
+const route = useRoute();
 
-const InstagramIcon = {
-  template: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="6" r="1" fill="currentColor"/></svg>`,
-};
+// Stalker submenu paths
+const stalkerPaths = ["/instagram-stalker"];
 
-const menuItems = ref([
-  { name: "Dashboard", path: "/", icon: shallowRef(markRaw(HomeIcon)) },
-  {
-    name: "Instagram Stalker",
-    path: "/instagram-stalker",
-    icon: shallowRef(markRaw(InstagramIcon)),
-  },
-]);
+// Check if any stalker page is active
+const isStalkerActive = computed(() => stalkerPaths.includes(route.path));
+
+// Dropdown state - auto open if active
+const stalkerOpen = ref(isStalkerActive.value);
 
 const mobileMenuOpen = ref(false);
 
@@ -250,9 +234,10 @@ const toggleMobileMenu = () => {
 }
 
 .nav-section-title {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--color-text-muted);
   margin-bottom: 0.75rem;
   padding-left: 0.75rem;
@@ -262,33 +247,118 @@ const toggleMobileMenu = () => {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
+  padding: 0.75rem 0.875rem;
+  border-radius: 0.625rem;
   color: var(--color-text-secondary);
   text-decoration: none;
   transition: all 0.2s ease;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .nav-item:hover {
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(99, 102, 241, 0.08);
   color: var(--color-text-primary);
 }
 
 .nav-item.active {
   background: linear-gradient(
     135deg,
-    rgba(99, 102, 241, 0.2),
-    rgba(139, 92, 246, 0.2)
+    rgba(99, 102, 241, 0.15),
+    rgba(139, 92, 246, 0.15)
   );
   color: var(--color-text-primary);
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.25);
 }
 
 .nav-icon {
   width: 20px;
-  height: 20px;
+  font-size: 1rem;
+  text-align: center;
   flex-shrink: 0;
+  opacity: 0.85;
+}
+
+/* Dropdown Menu */
+.nav-dropdown {
+  margin-bottom: 0.375rem;
+}
+
+.nav-dropdown-toggle {
+  width: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  justify-content: flex-start;
+}
+
+.nav-dropdown-toggle.open {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.dropdown-arrow {
+  font-size: 0.75rem;
+  margin-left: auto;
+  opacity: 0.6;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-dropdown-toggle:hover .dropdown-arrow {
+  opacity: 1;
+}
+
+.dropdown-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  padding-left: 0.25rem;
+  margin-top: 0.125rem;
+  margin-bottom: 0.25rem;
+}
+
+.nav-subitem {
+  padding-left: 2.75rem;
+  font-size: 0.8125rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  margin-bottom: 0.125rem;
+  border-left: 2px solid transparent;
+  margin-left: 1.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.nav-subitem:hover {
+  border-left-color: rgba(99, 102, 241, 0.3);
+}
+
+.nav-subitem.active {
+  border-left-color: var(--color-primary);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.nav-subitem .nav-icon {
+  font-size: 0.9rem;
+}
+
+/* Dropdown Transition */
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  max-height: 0;
+}
+
+.dropdown-enter-to,
+.dropdown-leave-from {
+  opacity: 1;
+  max-height: 200px;
 }
 
 /* Sidebar Footer */

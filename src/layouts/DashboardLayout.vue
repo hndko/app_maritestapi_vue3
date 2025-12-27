@@ -313,33 +313,34 @@ const toggleMobileMenu = () => {
 }
 
 .nav-dropdown-menu {
-  padding-left: 0.25rem;
-  margin-top: 0.125rem;
+  padding-left: 0;
+  margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
 
 .nav-subitem {
-  padding-left: 2.75rem;
+  padding-left: 2.5rem;
   font-size: 0.8125rem;
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-  margin-bottom: 0.125rem;
-  border-left: 2px solid transparent;
-  margin-left: 1.5rem;
-  border-radius: 0 0.5rem 0.5rem 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 0.75rem;
+  margin-bottom: 0;
+  margin-left: 0;
+  border-radius: 0.5rem;
 }
 
 .nav-subitem:hover {
-  border-left-color: rgba(99, 102, 241, 0.3);
+  background: rgba(99, 102, 241, 0.08);
 }
 
 .nav-subitem.active {
-  border-left-color: var(--color-primary);
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--color-text-primary);
 }
 
 .nav-subitem .nav-icon {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  opacity: 0.7;
 }
 
 /* Dropdown Transition */

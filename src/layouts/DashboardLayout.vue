@@ -89,6 +89,34 @@
               </div>
             </transition>
           </div>
+
+          <!-- Tools Dropdown -->
+          <div class="nav-dropdown">
+            <button
+              class="nav-item nav-dropdown-toggle"
+              :class="{ active: isToolsActive, open: toolsOpen }"
+              @click="toolsOpen = !toolsOpen"
+            >
+              <i class="fas fa-tools nav-icon"></i>
+              <span>Tools</span>
+              <i
+                class="fas fa-chevron-down dropdown-arrow"
+                :class="{ rotated: toolsOpen }"
+              ></i>
+            </button>
+            <transition name="dropdown">
+              <div v-if="toolsOpen" class="nav-dropdown-menu">
+                <router-link
+                  to="/e-wallet-check"
+                  class="nav-item nav-subitem"
+                  :class="{ active: $route.path === '/e-wallet-check' }"
+                >
+                  <i class="fas fa-wallet nav-icon"></i>
+                  <span>E-Wallet Check</span>
+                </router-link>
+              </div>
+            </transition>
+          </div>
         </div>
       </nav>
 
@@ -160,11 +188,18 @@ const route = useRoute();
 // Stalker submenu paths
 const stalkerPaths = ["/instagram-stalker"];
 
+// Tools submenu paths
+const toolsPaths = ["/e-wallet-check"];
+
 // Check if any stalker page is active
 const isStalkerActive = computed(() => stalkerPaths.includes(route.path));
 
+// Check if any tools page is active
+const isToolsActive = computed(() => toolsPaths.includes(route.path));
+
 // Dropdown state - auto open if active
 const stalkerOpen = ref(isStalkerActive.value);
+const toolsOpen = ref(isToolsActive.value);
 
 const mobileMenuOpen = ref(false);
 

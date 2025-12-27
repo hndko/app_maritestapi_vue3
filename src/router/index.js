@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/Home.vue";
 import InstagramStalker from "../pages/InstagramStalker.vue";
+import EWalletCheck from "../pages/EWalletCheck.vue";
 
 const routes = [
   {
@@ -19,6 +20,15 @@ const routes = [
     meta: {
       title: "Instagram Stalker",
       icon: "instagram",
+    },
+  },
+  {
+    path: "/e-wallet-check",
+    name: "EWalletCheck",
+    component: EWalletCheck,
+    meta: {
+      title: "E-Wallet Check",
+      icon: "wallet",
     },
   },
 ];

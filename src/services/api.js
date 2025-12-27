@@ -26,4 +26,19 @@ export const instagramStalker = async (username) => {
   }
 };
 
+// E-Wallet Name Check API
+export const checkEWalletName = async (bank, accountNumber) => {
+  try {
+    const response = await api.get("/cek-name-e-wallet-id", {
+      params: {
+        bank: bank,
+        accountNumber: accountNumber,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || error.message;
+  }
+};
+
 export default api;

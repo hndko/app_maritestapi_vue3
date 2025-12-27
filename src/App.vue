@@ -1,9 +1,9 @@
 <template>
-  <DashboardLayout />
+  <DefaultLayout />
 </template>
 
 <script setup>
-import DashboardLayout from "./layouts/DashboardLayout.vue";
+import DefaultLayout from "./layouts/DefaultLayout.vue";
 </script>
 
 <style>

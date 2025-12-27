@@ -265,7 +265,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { instagramStalker } from "../services/api";
+import { instagramStalker } from "../../services/api";
 
 const username = ref("");
 const loading = ref(false);

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/Home.vue";
-import InstagramStalker from "../pages/InstagramStalker.vue";
-import EWalletCheck from "../pages/EWalletCheck.vue";
+import InstagramStalker from "../pages/stalker/InstagramStalker.vue";
+import EWalletCheck from "../pages/tools/EWalletCheck.vue";
 
 const routes = [
   {

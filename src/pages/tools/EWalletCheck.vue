@@ -135,7 +135,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { checkEWalletName } from "../services/api";
+import { checkEWalletName } from "../../services/api";
 
 const selectedBank = ref("");
 const accountNumber = ref("");
@@ -150,6 +150,8 @@ const ewalletList = [
   { value: "ovo", label: "OVO" },
   { value: "shopeepay", label: "ShopeePay" },
   { value: "linkaja", label: "LinkAja" },
+  { value: "isaku", label: "iSaku" },
+  { value: "astrapay", label: "AstraPay" },
 ];
 
 const getEwalletLabel = (value) => {
